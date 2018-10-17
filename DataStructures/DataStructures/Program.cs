@@ -8,8 +8,10 @@ namespace DataStructures
         {   // The variable has to be one type of the buffers not the buffers interface
             var circularBuffer = new CircularBuffer<double>();
             var buffer = new Buffer<double>();
+            var asInts = buffer.AsEnumerableOf<double, int>();
+            buffer.Dump();
 
-            foreach (var item in buffer)
+            foreach (var item in asInts)
             {
                 Console.WriteLine(item);
             }

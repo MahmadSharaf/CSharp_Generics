@@ -6,7 +6,7 @@ namespace DataStructures
     public interface IBuffer<T> : IEnumerable<T> // To add iterating feature to the buffers, IEnumerable has to implemented
     {
         bool IsEmpty { get; }
-        IEnumerable<TOutput> AsEnumerableOf<TOutput>();
+        //IEnumerable<TOutput> AsEnumerableOf<TOutput>();
         T Read();
         void Write(T value);
     }
