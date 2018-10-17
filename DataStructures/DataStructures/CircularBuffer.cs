@@ -2,7 +2,7 @@
 
 namespace DataStructures
 {
-    public class CircularBuffer<T>
+    public class CircularBuffer<T> : Buffer<T>
     {
         private T[] _buffer;
         private int _start;
