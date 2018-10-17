@@ -9,16 +9,20 @@ namespace DataStructures
             var circularBuffer = new CircularBuffer<double>();
             var buffer = new Buffer<double>();
             var asInts = buffer.AsEnumerableOf<double, int>();
-            buffer.Dump();
+            var consoleOut = new Printer<double>(ConsoleWrite);
 
-            foreach (var item in asInts)
-            {
-                Console.WriteLine(item);
-            }
+            
 
             ProcessInput(buffer);
+            buffer.Dump(consoleOut);
             ProcessBuffer(buffer);
         }
+
+        private static void ConsoleWrite(double data)
+        {
+            Console.WriteLine(data);
+        }
+
         // The methods can take Input parameters as an interface type so it can receive any type of the buffers, as it would be more generic
         private static void ProcessBuffer(IBuffer<double> buffer)
         {

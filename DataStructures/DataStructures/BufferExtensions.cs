@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DataStructures
 {   //Extension class
+
+    public delegate void Printer<T>(T data);//A delegate
+
     public static class BufferExtensions
     {   // Because Extension class can not accept generic types, so it will be send in the method itself
         public static IEnumerable<TOutput> AsEnumerableOf<T, TOutput>
@@ -23,11 +26,11 @@ namespace DataStructures
             }
         }
 
-        public static void Dump<T>(this IBuffer<T> buffer)
+        public static void Dump<T>(this IBuffer<T> buffer, Printer<T> print)
         {
             foreach (var item in buffer)
             {
-                Console.WriteLine(item);
+                print(item);
             }
         }
     }
