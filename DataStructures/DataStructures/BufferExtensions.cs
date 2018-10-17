@@ -11,7 +11,9 @@ namespace DataStructures
    // public delegate void Printer<T>(T data);//A delegate replaced by Action<T>
 
     public static class BufferExtensions
-    {   // Because Extension class can not accept generic types, so it will be send in the method itself
+    {   
+        /*
+        // Because Extension class can not accept generic types, so it will be send in the method itself
         public static IEnumerable<TOutput> AsEnumerableOf<T, TOutput>
             (this IBuffer<T> buffer) // This extends to IBuffer interface
         {
@@ -24,6 +26,13 @@ namespace DataStructures
                 //yield builds an IEnumerable return 
                 yield return result;//casting to (TOutput) to make sure that the converting was correct
             }
+        }
+        */
+
+        public static IEnumerable<TOutput> Map<T, TOutput>(
+            this IBuffer<T> buffer, Converter<T, TOutput> converter)
+        {
+            return buffer.Select(i => converter(i));
         }
 
         public static void Dump<T>(this IBuffer<T> buffer, Action<T> print)

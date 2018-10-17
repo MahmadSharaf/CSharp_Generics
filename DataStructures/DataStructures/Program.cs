@@ -8,7 +8,7 @@ namespace DataStructures
         {   // The variable has to be one type of the buffers not the buffers interface
             var circularBuffer = new CircularBuffer<double>();
             var buffer = new Buffer<double>();
-            var asInts = buffer.AsEnumerableOf<double, int>();
+            
             //var consoleOut = new Action<double>(ConsoleWrite);
             //Action<double> print = ConsoleWrite;//A delegate action
             //Action<double> print = delegate (double data) //Auto implemented
@@ -24,10 +24,22 @@ namespace DataStructures
             Func<double, double, double> add = (x, y) => x + y;
             //Predicate takes 1 input and returns boolean
             Predicate<double> isLessThanTen = d => d < 10;
+            //Converter takes 1 input and return 1 output and used to convert types
 
+            Converter<double, DateTime> converter = d => new DateTime(2010, 1, 1).AddDays(d);
+            var asDates = buffer.Map(converter);
+            //above two lines combined
+            
+            var asDates2 = buffer.Map(d => new DateTime(2010, 1, 1).AddDays(d));
+            ProcessInput(buffer);
+
+            foreach (var date in asDates2)
+            {
+                Console.WriteLine(date);
+            }
             print(isLessThanTen(square(add(3,5))));
 
-            ProcessInput(buffer);
+           
             buffer.Dump(d => Console.WriteLine(d));
             ProcessBuffer(buffer);
         }
