@@ -9,19 +9,33 @@ namespace DataStructures
             var circularBuffer = new CircularBuffer<double>();
             var buffer = new Buffer<double>();
             var asInts = buffer.AsEnumerableOf<double, int>();
-            var consoleOut = new Printer<double>(ConsoleWrite);
+            //var consoleOut = new Action<double>(ConsoleWrite);
+            //Action<double> print = ConsoleWrite;//A delegate action
+            //Action<double> print = delegate (double data) //Auto implemented
+            //{
+            //    Console.WriteLine(data);
+            //};
 
-            
+            //Delegates with lambdas:
+            //Action takes up to 16 generic inputs and returns void
+            Action<bool> print = d => Console.WriteLine(d);//Using lambdas
+            //Func takes up to 16 generic inputs and returns a generic output
+            Func<double, double> square = d => d * d;
+            Func<double, double, double> add = (x, y) => x + y;
+            //Predicate takes 1 input and returns boolean
+            Predicate<double> isLessThanTen = d => d < 10;
+
+            print(isLessThanTen(square(add(3,5))));
 
             ProcessInput(buffer);
-            buffer.Dump(consoleOut);
+            buffer.Dump(d => Console.WriteLine(d));
             ProcessBuffer(buffer);
         }
-
-        private static void ConsoleWrite(double data)
-        {
-            Console.WriteLine(data);
-        }
+        // Implemented in Action delegate
+        //private static void ConsoleWrite(double data)
+        //{
+        //    Console.WriteLine(data);
+        //}
 
         // The methods can take Input parameters as an interface type so it can receive any type of the buffers, as it would be more generic
         private static void ProcessBuffer(IBuffer<double> buffer)

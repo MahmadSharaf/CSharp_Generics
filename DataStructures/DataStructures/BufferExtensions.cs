@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace DataStructures
 {   //Extension class
 
-    public delegate void Printer<T>(T data);//A delegate
+   // public delegate void Printer<T>(T data);//A delegate replaced by Action<T>
 
     public static class BufferExtensions
     {   // Because Extension class can not accept generic types, so it will be send in the method itself
@@ -26,7 +26,7 @@ namespace DataStructures
             }
         }
 
-        public static void Dump<T>(this IBuffer<T> buffer, Printer<T> print)
+        public static void Dump<T>(this IBuffer<T> buffer, Action<T> print)
         {
             foreach (var item in buffer)
             {
