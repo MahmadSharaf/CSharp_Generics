@@ -7,7 +7,12 @@ namespace DataStructures
         static void Main(string[] args)
         {   // The variable has to be one type of the buffers not the buffers interface
             var circularBuffer = new CircularBuffer<double>();
-            var buffer = new CircularBuffer<double>();
+            var buffer = new Buffer<double>();
+
+            foreach (var item in buffer)
+            {
+                Console.WriteLine(item);
+            }
 
             ProcessInput(buffer);
             ProcessBuffer(buffer);

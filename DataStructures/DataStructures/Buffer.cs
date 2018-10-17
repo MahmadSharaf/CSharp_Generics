@@ -25,5 +25,21 @@ namespace DataStructures
         {
             _queue.Enqueue(value);
         }
+
+
+        // IEnumerable to implemented two methods has to be created
+        // This one is created for the
+        public IEnumerator<T> GetEnumerator()
+        {
+            foreach (var item in _queue)
+            {
+                yield return item;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }
