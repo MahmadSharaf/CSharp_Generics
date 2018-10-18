@@ -6,7 +6,7 @@ namespace DataStructures
     {
         static void Main(string[] args)
         {   // The variable has to be one type of the buffers not the buffers interface
-            var circularBuffer = new CircularBuffer<double>();
+            var circularBuffer = new CircularBuffer<double>(capacity: 3);
             var buffer = new Buffer<double>();
             
             //var consoleOut = new Action<double>(ConsoleWrite);
@@ -31,7 +31,7 @@ namespace DataStructures
             //above two lines combined
             
             var asDates2 = buffer.Map(d => new DateTime(2010, 1, 1).AddDays(d));
-            ProcessInput(buffer);
+            ProcessInput(circularBuffer);
 
             foreach (var date in asDates2)
             {
@@ -41,7 +41,7 @@ namespace DataStructures
 
            
             buffer.Dump(d => Console.WriteLine(d));
-            ProcessBuffer(buffer);
+            ProcessBuffer(circularBuffer);
         }
         // Implemented in Action delegate
         //private static void ConsoleWrite(double data)
